@@ -24,8 +24,8 @@ I analyzed Windows Security Event Logs to identify failed authentication attempt
 | Threat assessment | Low — consistent with user error, not brute force |
 
 ## Screenshots
-![Event Viewer showing failed login](screenshot1.png)
-![PowerShell output](screenshot2.png)
+![Event Viewer showing failed login](Eventviewer-Dialogbox.png)
+![PowerShell output](Powershell.png)
 
 ## MITRE ATT&CK Mapping
 - **T1110 (Brute Force)** — Multiple failed authentication attempts observed
