@@ -1,0 +1,137 @@
+﻿WINDOWS SECURITY LOG ANALYSIS REPORT
+
+
+Name: Samrachana Baral
+Date: 4/23/2026
+Computer: Vision
+________________
+
+
+
+
+TOTAL FAILED LOGINS FOUND: [5]
+________________
+
+
+
+
+EVENT 1:
+- Time: 2026-04-23 7:04:05 PM
+- Account attempted: Admin
+- Failure reason: 0xC000006A = wrong password
+- Source IP: 127.0.0.1
+
+
+EVENT 2:
+- Time: 2026-04-23 7:04:03 PM
+- Account attempted: [Admin
+- Failure reason: 0xC000006A = wrong password
+- Source IP: 127.0.0.1
+
+
+EVENT 3:
+- Time: 2026-04-23 7:04:02 PM
+- Account attempted: Admin
+- Failure reason: 0xC000006A = wrong password
+- Source IP: 127.0.0.1
+
+
+EVENT 4:
+- Time: 2026-04-23 7:04:00 PM
+- Account attempted: Admin
+- Failure reason: 0xC000006A = wrong password
+- Source IP: 127.0.0.1
+
+
+EVENT 5:
+- Time: 2026-04-23 7:03:58 PM
+- Account attempted: Admin
+- Failure reason: 0xC000006A = wrong password
+- Source IP: 127.0.0.1
+________________
+
+
+
+
+OBSERVATIONS:
+
+
+Did any account have multiple failures? YES
+If yes, which account? Admin
+
+
+Did any IP address appear repeatedly? YES
+If yes, which IP? 127.0.0.1 (localhost)
+
+
+Are these events spread out or in rapid succession? Rapid succession — all 5 events occurred within 7 seconds (7:03:58 PM to 7:04:05 PM)
+________________
+
+
+
+
+THREAT ASSESSMENT:
+
+
+[ ] Concerning - Possible brute force attack
+[✓] Not concerning - Likely user error
+[ ] Uncertain - Needs more investigation
+
+
+Reason for assessment:
+All failed login attempts came from 127.0.0.1 (localhost), which means they originated from the same computer being analyzed, not from a remote attacker. The source IP being local indicates these were physical login attempts at the machine itself. The rapid succession (5 attempts in 7 seconds) suggests someone typing a password repeatedly, likely the account owner mistyping rather than an automated brute force tool (which would typically show thousands of attempts). No unusual usernames (like "Administrator" with capital A) were attempted — just "Admin" repeatedly, which appears to be the user's own account name.
+________________
+
+
+
+
+WHAT I LEARNED:
+
+
+1. Event ID 4625 in Windows Security Log tracks failed login attempts, with status code 0xC000006A specifically meaning "username correct but password wrong"
+
+
+2. Source IP address is critical for threat assessment — 127.0.0.1 indicates local login attempts, while an external IP would suggest remote attack
+
+
+3. Timestamps help distinguish between user error (rapid attempts within seconds as user retypes password) and automated brute force (consistent timing or thousands of attempts)
+
+
+4. The MITRE ATT&CK framework maps failed login patterns to T1110 (Brute Force), but context (source IP, frequency, username patterns) determines actual threat level
+________________
+
+
+
+
+MITRE ATT&CK MAPPING:
+T1110 - Brute Force (observed multiple failed authentication attempts)
+
+
+Note: While technique T1110 applies technically, the local source IP (127.0.0.1) makes this user error rather than adversarial activity.
+________________
+
+
+
+
+ACTIONS TAKEN:
+- Generated 10+ failed login attempts
+- Filtered Security log for Event ID 4625
+- Analyzed timestamps, usernames, and failure reasons
+- Documented findings in this report
+- Screenshots saved
+________________
+
+
+
+
+ADDITIONAL TECHNICAL DETAILS:
+
+
+Status Code Translation:
+0xC000006A = Status_Wrong_Password (username exists but password incorrect)
+
+
+Source IP 127.0.0.1 = Localhost (login attempt at physical machine, not network)
+
+
+Time Pattern: 5 attempts in 7 seconds = ~0.7 attempts per second (human typing speed, not automated)
